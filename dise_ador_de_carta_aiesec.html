@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIESEC ESPE - Diseñador de Carta de Presentación</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aiesec: {
+                            blue: '#037EF3',      /* Official AIESEC Blue */
+                            navy: '#0A2540',      /* AIESEC Navy Accent */
+                            light: '#F5F5F5',     /* Official AIESEC Light Gray */
+                            darkText: '#52565E',  /* Official AIESEC Dark Gray (Abbey) */
+                            gv: '#F85A40',        /* Official Global Volunteer Sunset Orange */
+                            gt: '#0CB9C1',        /* Official Global Talent Teal */
+                            gte: '#F48924',       /* Official Global Teacher Carrot Orange */
+                            cerulean: '#0CB9C1',  /* Official AIESEC Cerulean */
+                            purple: '#7552CC',    /* Official AIESEC Purple */
+                            yellow: '#FFC845'     /* Official AIESEC Yellow */
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Montserrat & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #0d1b2a;
+            font-family: 'Poppins', sans-serif;
+            color: #2D3748;
+        }
+
+        /* Medidas Estándar A4 */
+        .a4-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .a4-container {
+                box-shadow: none;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            [contenteditable="true"] {
+                outline: none !important;
+                background: transparent !important;
+            }
+        }
+
+        /* Estilo de resaltado en Modo Edición */
+        .editing-mode [contenteditable="true"] {
+            outline: 1.5px dashed #037EF3;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            cursor: text;
+        }
+
+        .editing-mode [contenteditable="true"]:hover {
+            background-color: rgba(3, 126, 243, 0.08);
+        }
+
+        /* Elemento de fondo decorativo */
+        .aiesec-watermark {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 320px;
+            height: 320px;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Personalización de Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0A2540;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #037EF3;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen py-8 px-2 md:px-6 flex flex-col items-center">
+
+    <!-- BARRA SUPERIOR DE HERRAMIENTAS (NO PRINT) -->
+    <header
+        class="no-print w-full max-w-[210mm] bg-aiesec-navy text-white rounded-2xl p-4 mb-6 shadow-2xl flex flex-wrap items-center justify-between gap-4 border border-blue-900/50">
+        <div class="flex items-center gap-3">
+            <div
+                class="w-10 h-10 rounded-xl bg-aiesec-blue flex items-center justify-center font-bold text-lg text-white shadow-md">
+                <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <div>
+                <h1 class="font-heading font-bold text-base md:text-lg tracking-wide text-white">Diseñador de Carta
+                    <span class="text-aiesec-blue">AIESEC</span></h1>
+                <p class="text-xs text-blue-200">AIESEC • Paleta Oficial (logos.aiesec.org)</p>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <a href="https://www.logos.aiesec.org/" target="_blank"
+                class="px-3 py-2 bg-blue-900/60 hover:bg-blue-800 text-xs font-semibold rounded-lg flex items-center gap-1.5 border border-blue-400/30 text-blue-200 hover:text-white transition-all">
+                <i class="fa-solid fa-palette text-aiesec-blue"></i>
+                <span>Brand Toolkit</span>
+            </a>
+            <!-- Botón de Modo Edición ON/OFF -->
+            <button id="toggleEditBtn" onclick="toggleEditMode()"
+                class="px-4 py-2 bg-blue-900/80 hover:bg-blue-800 text-xs font-semibold rounded-lg flex items-center gap-2 border border-blue-400/30 transition-all text-white">
+                <i class="fa-solid fa-lock-open text-blue-300" id="lockIcon"></i>
+                <span id="editBtnText">Modo Edición: ON</span>
+            </button>
+
+            <!-- Botón Descargar PDF -->
+            <button onclick="window.print()"
+                class="px-5 py-2 bg-aiesec-blue hover:bg-blue-600 text-white text-xs font-bold rounded-lg flex items-center gap-2 shadow-lg shadow-blue-500/30 transition-all">
+                <i class="fa-solid fa-download"></i>
+                <span>Descargar PDF</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- NOTA INFORMATIVA PARA EL USUARIO (NO PRINT) -->
+    <div class="no-print w-full max-w-[210mm] mb-4 flex flex-col gap-2">
+        <div
+            class="bg-blue-950/80 border border-blue-500/30 text-blue-100 text-xs py-2.5 px-4 rounded-xl flex items-center justify-between">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-aiesec-gt text-sm"></i>
+                Colores y marcas actualizadas con la guía oficial de <b>logos.aiesec.org</b> (#037EF3, #F85A40, #0CB9C1,
+                #F48924, #52565E).
+            </span>
+            <span class="hidden sm:inline text-blue-300 font-medium">AIESEC Bluebook Verified</span>
+        </div>
+
+        <div
+            class="bg-blue-950/80 border border-blue-500/30 text-blue-100 text-xs py-2.5 px-4 rounded-xl flex items-center justify-between">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-aiesec-blue text-sm"></i>
+                Edita directamente los campos dando clic sobre el texto. Activa o desactiva el <b>Modo Edición</b> según
+                necesites.
+            </span>
+            <span class="hidden sm:inline text-blue-300 font-medium">Formato Hoja A4</span>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR A4 DE LA CARTA -->
+    <div id="letterDocument" class="a4-container editing-mode text-aiesec-darkText relative">
+
+        <!-- WATERMARK LOGO SUTIL EN FONDO -->
+        <img src="logos/blue human/AIESEC-Human-Watermark.png" class="aiesec-watermark opacity-20 object-contain"
+            alt="AIESEC Watermark">
+
+        <!-- BANDA SUPERIOR DE COLOR DE MARCA -->
+        <div class="w-full h-3 bg-gradient-to-r from-aiesec-navy via-aiesec-blue to-aiesec-gt"></div>
+
+        <!-- ENCABEZADO Y LOGO OFICIAL -->
+        <header class="relative z-10 px-12 sm:px-16 pt-10 flex justify-between items-start">
+            <div>
+                <!-- LOGO SVG OFICIAL Y TIPOGRÁFICO DE AIESEC -->
+                <div class="flex items-center gap-3">
+                    <img src="logos/blue human/AIESEC-Human-Blue.png" class="h-9 w-auto" alt="AIESEC Logo">
+                    <div class="flex flex-col">
+                        <span
+                            class="font-heading font-black text-2xl tracking-tight text-aiesec-navy leading-none">AIESEC</span>
+                        <span class="text-[9px] text-aiesec-blue font-bold uppercase tracking-[0.2em] mt-1">Human
+                            Potential & Leadership</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <div contenteditable="true" class="text-xs font-bold text-aiesec-navy">Sangolquí, Ecuador</div>
+                <div contenteditable="true" id="currentDate" class="text-xs text-gray-500 font-medium mt-0.5">12 de
+                    Octubre, 2026</div>
+            </div>
+        </header>
+
+        <!-- DESTINATARIO -->
+        <section class="relative z-10 px-12 sm:px-16 mt-10">
+            <div
+                class="inline-block bg-aiesec-light border border-aiesec-blue/20 text-aiesec-blue text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md mb-2">
+                Destinatario
+            </div>
+            <div contenteditable="true"
+                class="text-aiesec-navy font-heading font-bold text-sm sm:text-base leading-snug">
+                [Nombre del destinatario]<br>
+                <span class="text-xs text-gray-600 font-medium">[Cargo del destinatario]</span><br>
+                <span class="text-xs text-aiesec-blue font-semibold">[Empresa o Institución]</span>
+            </div>
+        </section>
+
+        <!-- CUERPO PRINCIPAL DE LA CARTA -->
+        <main
+            class="flex-1 px-12 sm:px-16 mt-6 flex flex-col gap-4 text-xs sm:text-sm text-gray-700 leading-relaxed text-justify relative z-10">
+
+            <p contenteditable="true" class="font-bold text-aiesec-navy text-sm">
+                Estimado/a [Nombre o institución]:
+            </p>
+
+            <p contenteditable="true">
+                Reciba un cordial saludo de parte de <b>AIESEC</b>. Nos complace presentarnos como la organización
+                global liderada por jóvenes más grande del mundo, enfocada en desarrollar el potencial de liderazgo
+                mediante experiencias prácticas en entornos internacionales e interculturales.
+            </p>
+
+            <p contenteditable="true">
+                AIESEC se encuentra presente en más de 100 países y territorios, conectando a estudiantes y recién
+                graduados con oportunidades que transforman sus vidas, permitiéndoles salir de su zona de confort,
+                adquirir habilidades profesionales claves y generar un impacto positivo y sostenible en la sociedad.
+            </p>
+
+            <p contenteditable="true">
+                Desde nuestra organización, trabajamos continuamente para acercar estas oportunidades a nuestra
+                comunidad mediante programas internacionales de intercambio y liderazgo:
+            </p>
+
+            <!-- TARJETAS VISUALES DE PRODUCTOS AIESEC -->
+            <div class="grid grid-cols-3 gap-3 my-2">
+                <!-- Global Volunteer -->
+                <div
+                    class="bg-red-50/50 p-3 rounded-xl border border-aiesec-gv/30 flex flex-col justify-between shadow-2xs">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <img src="logos/GV/GV WM COLOR.png" class="h-6 w-auto object-contain shrink-0"
+                                alt="Global Volunteer">
+                            <h4
+                                class="font-heading font-extrabold text-[10px] text-aiesec-navy uppercase tracking-tight">
+                                Global Volunteer</h4>
+                        </div>
+                        <p contenteditable="true" class="text-[10px] text-gray-600 leading-tight">Voluntariados
+                            internacionales alineados con los ODS de la ONU.</p>
+                    </div>
+                    <span
+                        class="text-[8px] font-bold text-aiesec-gv uppercase tracking-widest mt-2 border-t border-aiesec-gv/20 pt-1">#F85A40
+                        • Impacto Social</span>
+                </div>
+
+                <!-- Global Talent -->
+                <div
+                    class="bg-emerald-50/50 p-3 rounded-xl border border-aiesec-gt/30 flex flex-col justify-between shadow-2xs">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <img src="logos/GT/GTA WM COLOR.png" class="h-6 w-auto object-contain shrink-0"
+                                alt="Global Talent">
+                            <h4
+                                class="font-heading font-extrabold text-[10px] text-aiesec-navy uppercase tracking-tight">
+                                Global Talent</h4>
+                        </div>
+                        <p contenteditable="true" class="text-[10px] text-gray-600 leading-tight">Prácticas
+                            profesionales en empresas y startups globales.</p>
+                    </div>
+                    <span
+                        class="text-[8px] font-bold text-aiesec-gt uppercase tracking-widest mt-2 border-t border-aiesec-gt/20 pt-1">#00C16E
+                        • Desarrollo Profesional</span>
+                </div>
+
+                <!-- Global Teacher -->
+                <div
+                    class="bg-orange-50/50 p-3 rounded-xl border border-aiesec-gte/30 flex flex-col justify-between shadow-2xs">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <img src="logos/GTE/GTE WM COLOR.png" class="h-6 w-auto object-contain shrink-0"
+                                alt="Global Teacher">
+                            <h4
+                                class="font-heading font-extrabold text-[10px] text-aiesec-navy uppercase tracking-tight">
+                                Global Teacher</h4>
+                        </div>
+                        <p contenteditable="true" class="text-[10px] text-gray-600 leading-tight">Oportunidades de
+                            docencia y enseñanza en el extranjero.</p>
+                    </div>
+                    <span
+                        class="text-[8px] font-bold text-aiesec-gte uppercase tracking-widest mt-2 border-t border-aiesec-gte/20 pt-1">#F48924
+                        • Educación Global</span>
+                </div>
+            </div>
+
+            <p contenteditable="true">
+                <b>Propósito de la comunicación:</b> En esta ocasión, nos dirigimos a usted con el objetivo de presentar
+                formalmente a nuestra organización y explorar posibles formas de colaboración estratégica [p. ej.
+                alianza institucional, difusión de oportunidades, desarrollo de eventos conjuntos] que agreguen valor
+                directo a la comunidad académica.
+            </p>
+
+            <p contenteditable="true">
+                Agradecemos de antemano su atención a la presente y la oportunidad de construir iniciativas conjuntas
+                que impulsen el liderazgo juvenil. Quedamos a su entera disposición para agendar una breve reunión de
+                trabajo.
+            </p>
+        </main>
+
+        <!-- PIE DE PÁGINA Y FIRMA -->
+        <footer class="px-12 sm:px-16 pb-10 pt-4 relative z-10">
+            <div class="flex justify-between items-end border-t border-gray-200 pt-6">
+                <div>
+                    <div class="text-[10px] font-bold text-aiesec-blue uppercase tracking-widest mb-1">Atentamente,
+                    </div>
+                    <div contenteditable="true" class="font-heading font-bold text-aiesec-navy text-sm sm:text-base">[Tu
+                        Nombre]</div>
+                    <div contenteditable="true" class="text-xs text-aiesec-blue font-semibold">[Tu Cargo] | AIESEC</div>
+
+                    <div class="flex flex-wrap gap-4 mt-3">
+                        <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                            <i class="fa-solid fa-envelope text-aiesec-blue text-xs"></i>
+                            <span contenteditable="true">evelyn.villarreal@aiesec.net</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                            <i class="fa-solid fa-phone text-aiesec-blue text-xs"></i>
+                            <span contenteditable="true">+593 96 320 8297</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                            <i class="fa-solid fa-globe text-aiesec-blue text-xs"></i>
+                            <span contenteditable="true">aiesec.org.ec</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INSIGNIA O LOGO DE CIERRE -->
+                <div class="text-right flex flex-col items-end">
+                    <img src="logos/powered by/powered-by-Blue.png" class="h-10 w-auto mb-1 opacity-90"
+                        alt="Powered by AIESEC">
+                    <span class="text-[9px] font-extrabold text-aiesec-navy tracking-tight uppercase">Peace &
+                        Fulfillment</span>
+                </div>
+            </div>
+
+            <!-- FRASE DE VALOR INSTITUCIONAL -->
+            <div
+                class="text-center mt-6 pt-3 border-t border-gray-100 text-[9px] text-gray-400 uppercase tracking-[0.3em] font-bold">
+                Activating Leadership Since 1948 • AIESEC
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT DE LOGICA INTERACTIVA -->
+    <script>
+        let editMode = true;
+
+        // Función para cambiar entre modo edición activa y bloqueada
+        function toggleEditMode() {
+            editMode = !editMode;
+            const letterDoc = document.getElementById('letterDocument');
+            const lockIcon = document.getElementById('lockIcon');
+            const editBtnText = document.getElementById('editBtnText');
+
+            if (editMode) {
+                letterDoc.classList.add('editing-mode');
+                lockIcon.className = 'fa-solid fa-lock-open text-blue-300';
+                editBtnText.innerText = 'Modo Edición: ON';
+            } else {
+                letterDoc.classList.remove('editing-mode');
+                lockIcon.className = 'fa-solid fa-lock text-gray-400';
+                editBtnText.innerText = 'Modo Edición: OFF';
+            }
+        }
+
+        // Cargar fecha actual formateada en español
+        window.onload = function () {
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const today = new Date();
+            document.getElementById('currentDate').innerText = '[Ciudad], ' + today.toLocaleDateString('es-ES', options);
+        }
+    </script>
+</body>
+
+</html>
