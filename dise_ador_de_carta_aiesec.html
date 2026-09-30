@@ -163,6 +163,12 @@
                 <span id="editBtnText">Modo Edición: ON</span>
             </button>
 
+            <!-- Botón Guardar Datos -->
+            <button onclick="saveData()" class="px-4 py-2 bg-emerald-600/90 hover:bg-emerald-600 text-white text-xs font-bold rounded-lg flex items-center gap-2 shadow-lg transition-all border border-emerald-400/30">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span id="saveBtnText">Guardar Datos</span>
+            </button>
+
             <!-- Botón Descargar PDF -->
             <button onclick="window.print()"
                 class="px-5 py-2 bg-aiesec-blue hover:bg-blue-600 text-white text-xs font-bold rounded-lg flex items-center gap-2 shadow-lg shadow-blue-500/30 transition-all">
@@ -267,62 +273,59 @@
             </p>
 
             <!-- TARJETAS VISUALES DE PRODUCTOS AIESEC -->
-            <div class="grid grid-cols-3 gap-3 my-2">
+            <div class="flex flex-col gap-4 my-2">
                 <!-- Global Volunteer -->
-                <div
-                    class="bg-red-50/50 p-3 rounded-xl border border-aiesec-gv/30 flex flex-col justify-between shadow-2xs">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <img src="logos/GV/GV WM COLOR.png" class="h-6 w-auto object-contain shrink-0"
-                                alt="Global Volunteer">
-                            <h4
-                                class="font-heading font-extrabold text-[10px] text-aiesec-navy uppercase tracking-tight">
-                                Global Volunteer</h4>
-                        </div>
-                        <p contenteditable="true" class="text-[10px] text-gray-600 leading-tight">Voluntariados
-                            internacionales alineados con los ODS de la ONU.</p>
+                <div class="bg-red-50/50 p-4 rounded-xl border border-aiesec-gv/30 flex flex-col sm:flex-row gap-4 shadow-sm">
+                    <div class="flex-shrink-0 flex items-center justify-center sm:w-1/4">
+                        <img src="logos/GV/GV WM COLOR.png" class="h-12 w-auto object-contain shrink-0" alt="Global Volunteer">
                     </div>
-                    <span
-                        class="text-[8px] font-bold text-aiesec-gv uppercase tracking-widest mt-2 border-t border-aiesec-gv/20 pt-1">#F85A40
-                        • Impacto Social</span>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <h4 class="font-heading font-extrabold text-sm text-aiesec-navy uppercase tracking-tight mb-1">Global Volunteer</h4>
+                            <p contenteditable="true" class="text-xs text-gray-600 mb-2">Voluntariados internacionales enfocados en contribuir a los Objetivos de Desarrollo Sostenible (ODS) de la ONU. Una oportunidad para desarrollar liderazgo y generar impacto social.</p>
+                            <div class="text-[10px] text-gray-700">
+                                <strong class="text-aiesec-gv">Beneficios:</strong> <span contenteditable="true">Impacto social directo, inmersión cultural, desarrollo personal y certificado internacional.</span><br>
+                                <strong class="text-aiesec-gv">Requisitos:</strong> <span contenteditable="true">Jóvenes de 18 a 30 años motivados por crear un cambio.</span>
+                            </div>
+                        </div>
+                        <span class="text-[9px] font-bold text-aiesec-gv uppercase tracking-widest mt-2 border-t border-aiesec-gv/20 pt-1">#F85A40 • Impacto Social</span>
+                    </div>
                 </div>
 
                 <!-- Global Talent -->
-                <div
-                    class="bg-emerald-50/50 p-3 rounded-xl border border-aiesec-gt/30 flex flex-col justify-between shadow-2xs">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <img src="logos/GT/GTA WM COLOR.png" class="h-6 w-auto object-contain shrink-0"
-                                alt="Global Talent">
-                            <h4
-                                class="font-heading font-extrabold text-[10px] text-aiesec-navy uppercase tracking-tight">
-                                Global Talent</h4>
-                        </div>
-                        <p contenteditable="true" class="text-[10px] text-gray-600 leading-tight">Prácticas
-                            profesionales en empresas y startups globales.</p>
+                <div class="bg-emerald-50/50 p-4 rounded-xl border border-aiesec-gt/30 flex flex-col sm:flex-row gap-4 shadow-sm">
+                    <div class="flex-shrink-0 flex items-center justify-center sm:w-1/4">
+                        <img src="logos/GT/GTA WM COLOR.png" class="h-12 w-auto object-contain shrink-0" alt="Global Talent">
                     </div>
-                    <span
-                        class="text-[8px] font-bold text-aiesec-gt uppercase tracking-widest mt-2 border-t border-aiesec-gt/20 pt-1">#00C16E
-                        • Desarrollo Profesional</span>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <h4 class="font-heading font-extrabold text-sm text-aiesec-navy uppercase tracking-tight mb-1">Global Talent</h4>
+                            <p contenteditable="true" class="text-xs text-gray-600 mb-2">Prácticas profesionales remuneradas en empresas y startups globales. Ideal para dar el primer paso en el mundo laboral a nivel internacional.</p>
+                            <div class="text-[10px] text-gray-700">
+                                <strong class="text-aiesec-gt">Beneficios:</strong> <span contenteditable="true">Desarrollo profesional, networking global, experiencia laboral internacional y remuneración económica.</span><br>
+                                <strong class="text-aiesec-gt">Requisitos:</strong> <span contenteditable="true">Estudiantes de últimos semestres o recién graduados (18 a 30 años).</span>
+                            </div>
+                        </div>
+                        <span class="text-[9px] font-bold text-aiesec-gt uppercase tracking-widest mt-2 border-t border-aiesec-gt/20 pt-1">#00C16E • Desarrollo Profesional</span>
+                    </div>
                 </div>
 
                 <!-- Global Teacher -->
-                <div
-                    class="bg-orange-50/50 p-3 rounded-xl border border-aiesec-gte/30 flex flex-col justify-between shadow-2xs">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <img src="logos/GTe/GTE WM COLOR.png" class="h-6 w-auto object-contain shrink-0"
-                                alt="Global Teacher">
-                            <h4
-                                class="font-heading font-extrabold text-[10px] text-aiesec-navy uppercase tracking-tight">
-                                Global Teacher</h4>
-                        </div>
-                        <p contenteditable="true" class="text-[10px] text-gray-600 leading-tight">Oportunidades de
-                            docencia y enseñanza en el extranjero.</p>
+                <div class="bg-orange-50/50 p-4 rounded-xl border border-aiesec-gte/30 flex flex-col sm:flex-row gap-4 shadow-sm">
+                    <div class="flex-shrink-0 flex items-center justify-center sm:w-1/4">
+                        <img src="logos/GTe/GTE WM COLOR.png" class="h-12 w-auto object-contain shrink-0" alt="Global Teacher">
                     </div>
-                    <span
-                        class="text-[8px] font-bold text-aiesec-gte uppercase tracking-widest mt-2 border-t border-aiesec-gte/20 pt-1">#F48924
-                        • Educación Global</span>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <h4 class="font-heading font-extrabold text-sm text-aiesec-navy uppercase tracking-tight mb-1">Global Teacher</h4>
+                            <p contenteditable="true" class="text-xs text-gray-600 mb-2">Oportunidades de docencia y enseñanza en instituciones educativas en el extranjero. Comparte tus conocimientos y transforma la educación.</p>
+                            <div class="text-[10px] text-gray-700">
+                                <strong class="text-aiesec-gte">Beneficios:</strong> <span contenteditable="true">Experiencia académica internacional, impacto en nuevas generaciones y desarrollo de habilidades pedagógicas.</span><br>
+                                <strong class="text-aiesec-gte">Requisitos:</strong> <span contenteditable="true">Jóvenes de 18 a 30 años con perfil o experiencia en educación/idiomas.</span>
+                            </div>
+                        </div>
+                        <span class="text-[9px] font-bold text-aiesec-gte uppercase tracking-widest mt-2 border-t border-aiesec-gte/20 pt-1">#F48924 • Educación Global</span>
+                    </div>
                 </div>
             </div>
 
@@ -405,12 +408,39 @@
             }
         }
 
-        // Cargar fecha actual formateada en español
-        window.onload = function () {
-            const options = { day: 'numeric', month: 'long', year: 'numeric' };
-            const today = new Date();
-            document.getElementById('currentDate').innerText = '[Ciudad], ' + today.toLocaleDateString('es-ES', options);
+        // Cargar y guardar datos editables localmente
+        function saveData() {
+            const editables = document.querySelectorAll('[contenteditable="true"]');
+            const data = [];
+            editables.forEach(el => data.push(el.innerHTML));
+            localStorage.setItem('aiesec_letter_data', JSON.stringify(data));
+            
+            const btnText = document.getElementById('saveBtnText');
+            btnText.innerText = '¡Guardado!';
+            setTimeout(() => { btnText.innerText = 'Guardar Datos'; }, 2000);
         }
+
+        function loadData() {
+            const saved = localStorage.getItem('aiesec_letter_data');
+            if (saved) {
+                const data = JSON.parse(saved);
+                const editables = document.querySelectorAll('[contenteditable="true"]');
+                editables.forEach((el, index) => {
+                    if (data[index] !== undefined) {
+                        el.innerHTML = data[index];
+                    }
+                });
+            } else {
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                const today = new Date();
+                const dateElem = document.getElementById('currentDate');
+                if(dateElem) {
+                    dateElem.innerText = '[Ciudad], ' + today.toLocaleDateString('es-ES', options);
+                }
+            }
+        }
+
+        window.onload = loadData;
     </script>
 </body>
 
